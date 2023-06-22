@@ -1,6 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app">
+     <!-- <div id="nav">
+      <router-link to="/">Home</router-link>
+      <router-link to="/list">List</router-link>      
+    </div> -->
+    <router-view/>
     <div id="no03" class="wrapper">
       <div class="boxes">
         <div class="box system-on">NURIER SYSTEM</div>
