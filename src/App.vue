@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div id="app">
      <!-- <div id="nav">
@@ -27,7 +26,8 @@
 import Header from "@/components/Header.vue";
 import Intro from "@/components/Intro_anim.vue";
 import MainAnim from "@/components/Main_anim.vue";
-import LinkNav from "@/components/LinkNav.vue"
+import LinkNav from "@/components/LinkNav.vue";
+import $ from 'jquery';
 
 export default {
   name: "App",
