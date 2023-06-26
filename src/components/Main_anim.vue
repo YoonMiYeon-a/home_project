@@ -3,6 +3,8 @@
     <!-- <div class="loading"></div> -->
     <section id="one" class="one container" data-target="one">
       <div class="description panel blue">
+        <div class="line line2"></div>
+        <div class="hand"></div>
         <div>
           <div class="scroll-down"><div class="arrow"></div></div>
         </div>
@@ -120,13 +122,13 @@ export default {
     //   '.loading'.fadeIn
     // })
 
-    function generateElements(html) {
-  const template = document.createElement('template');
-  template.innerHTML = html.trim();
-  return template.content.children;
-}
+  function generateElements(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html.trim();
+    return template.content.children;
+  }
 
-generateElements('<div>Hello World!</div>');
+  generateElements('<div>Hello World!</div>');
 
 
     // Top button
@@ -142,6 +144,27 @@ generateElements('<div>Hello World!</div>');
       e.preventDefault();
       window.scrollTo({ top:0, behavior: 'smooth' });
     })
+
+    
+
+
+    // var tl = gsap.timeline();
+    // tl.to(".box1", { duration: 3, x: 200, ease: 'steps(10)' });
+    // tl.to(".box1", {duration: 3, y: 200, opacity: 1, });
+    // tl.to(".box1", { duration: 3, x: 0, width: 200, backgroundColor: 'red', });
+    // tl.to(".box1", { duration: 3, y: 0, height: 200, });
+
+// gsap.fromTo(".line", { duration: 3, x: 300, });
+
+// var tween = gsap.to(".line2", { duration: 8, x: 400, width: 400, paused: true, });
+gsap.to(".line2", { duration: 3, width: 700, delay: 0.2,});
+gsap.to(".hand", { duration: 3, x:740, y:110, delay: 0,});
+gsap.to(".hand", { duration: 3, y:-100, delay: 0,});
+gsap.to(".hand", { duration: 3, y:30, delay: 0});
+gsap.to(".hand", { duration: 3, y:15, delay: 0.9,});
+
+// gsap.to(".box1", { duration: 8, x: 200, opacity: 0.2, ease: 'steps(10)', delay: 1,});
+
 
     /* nav links */
     let links = gsap.utils.toArray(".link_nav a");
@@ -412,8 +435,9 @@ generateElements('<div>Hello World!</div>');
 <style>
 @import "../assets/css/sample.css";
 #one .panel:nth-child(1) {
-  background: url(../assets/images/bg/system1/01.jpg) no-repeat;
+  background: url(../assets/images/bg/system1/16.jpg) no-repeat;
   background-size: cover;
+  position: relative;
 }
 #two .panel:nth-child(1) {
   background: url(../assets/images/bg/system1/05.jpg) no-repeat;
@@ -576,6 +600,33 @@ generateElements('<div>Hello World!</div>');
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.box{
+  position: absolute;
+  left: 0;
+  z-index: 10; 
+  margin: 20px; width: 100px; height: 100px;
+}
+.box1{ 
+  background: orange;
+}
+.line {
+  position: absolute;
+  left: 20px;
+  top: 563px;
+  width: 0px;
+  height: 40px;
+  background: url(../assets/images/bg/system1/15.jpg) no-repeat;
+  z-index: 30;
+}
+.hand {
+  position: absolute;
+  left: -40px;
+  top: 523px;
+  width: 423px;
+  height: 396px;
+  z-index: 50;
+  background: url(../assets/images/bg/system1/hand.png) no-repeat;
 }
 
 </style>
