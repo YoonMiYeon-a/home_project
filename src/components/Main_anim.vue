@@ -1,6 +1,6 @@
 <template>
   <div class="section_container">
-    <!-- <div class="loading"></div> -->
+    <div class="loading"></div>
     <section id="one" class="one container" data-target="one">
       <div class="description panel blue">
         <div class="line line2"></div>
@@ -127,9 +127,26 @@ export default {
     template.innerHTML = html.trim();
     return template.content.children;
   }
+  gsap.registerPlugin(MotionPathPlugin);
+  gsap.set(".astronaut", {scale: 0.5, autoAlpha: 1});
+  gsap.to(".astronaut", {
+    duration: 5, 
+    ease: "power1.inOut",
+    immediateRender: true,
+    motionPath: {
+      path: "#path",
+      align: "#path",
+      alignOrigin: [0.5, 0.5],
+      autoRotate: 90
+    }
+  });
+
+  MotionPathHelper.create(".astronaut");
 
   generateElements('<div>Hello World!</div>');
 
+  // gsap.to(".loading", {display: block, duration: 1});
+  // gsap.from(".loading", {display: none, duration: 1});
 
     // Top button
     let Top = document.querySelector('.top_btn');
@@ -143,27 +160,12 @@ export default {
     Top.addEventListener('click', function (e) {
       e.preventDefault();
       window.scrollTo({ top:0, behavior: 'smooth' });
-    })
-
-    
-
-
-    // var tl = gsap.timeline();
-    // tl.to(".box1", { duration: 3, x: 200, ease: 'steps(10)' });
-    // tl.to(".box1", {duration: 3, y: 200, opacity: 1, });
-    // tl.to(".box1", { duration: 3, x: 0, width: 200, backgroundColor: 'red', });
-    // tl.to(".box1", { duration: 3, y: 0, height: 200, });
-
-// gsap.fromTo(".line", { duration: 3, x: 300, });
-
-// var tween = gsap.to(".line2", { duration: 8, x: 400, width: 400, paused: true, });
-gsap.to(".line2", { duration: 3, width: 700, delay: 0.2,});
-gsap.to(".hand", { duration: 3, x:740, y:110, delay: 0,});
-gsap.to(".hand", { duration: 3, y:-100, delay: 0,});
-gsap.to(".hand", { duration: 3, y:30, delay: 0});
-gsap.to(".hand", { duration: 3, y:15, delay: 0.9,});
-
-// gsap.to(".box1", { duration: 8, x: 200, opacity: 0.2, ease: 'steps(10)', delay: 1,});
+    }) 
+    gsap.to(".line2", { duration: 3, width: 700, delay: 0.2,});
+    gsap.to(".hand", { duration: 3, x:740, y:110, delay: 0,});
+    gsap.to(".hand", { duration: 3, y:-100, delay: 0,});
+    gsap.to(".hand", { duration: 3, y:30, delay: 0});
+    gsap.to(".hand", { duration: 3, y:15, delay: 0.9,});
 
 
     /* nav links */
@@ -497,7 +499,6 @@ gsap.to(".hand", { duration: 3, y:15, delay: 0.9,});
   z-index: 999;
   height: 2em;
   width: 2em;
-  overflow: visible;
   margin: auto;
   top: 0;
   left: 0;
