@@ -1,4 +1,4 @@
-# home_project
+# 홈페이지 리뉴얼(Vue기반)
 
 ## Project setup
 ```
