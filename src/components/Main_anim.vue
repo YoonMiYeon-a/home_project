@@ -1,8 +1,10 @@
 <template>
   <div class="section_container">
-    <!-- <div class="loading"></div> -->
+    <div class="loading"></div>
     <section id="one" class="one container" data-target="one">
       <div class="description panel blue">
+        <div class="line line2"></div>
+        <div class="hand"></div>
         <div>
           <div class="scroll-down"><div class="arrow"></div></div>
         </div>
@@ -120,14 +122,31 @@ export default {
     //   '.loading'.fadeIn
     // })
 
-    function generateElements(html) {
-  const template = document.createElement('template');
-  template.innerHTML = html.trim();
-  return template.content.children;
-}
+  function generateElements(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html.trim();
+    return template.content.children;
+  }
+  gsap.registerPlugin(MotionPathPlugin);
+  gsap.set(".astronaut", {scale: 0.5, autoAlpha: 1});
+  gsap.to(".astronaut", {
+    duration: 5, 
+    ease: "power1.inOut",
+    immediateRender: true,
+    motionPath: {
+      path: "#path",
+      align: "#path",
+      alignOrigin: [0.5, 0.5],
+      autoRotate: 90
+    }
+  });
 
-generateElements('<div>Hello World!</div>');
+  MotionPathHelper.create(".astronaut");
 
+  generateElements('<div>Hello World!</div>');
+
+  // gsap.to(".loading", {display: block, duration: 1});
+  // gsap.from(".loading", {display: none, duration: 1});
 
     // Top button
     let Top = document.querySelector('.top_btn');
@@ -141,7 +160,13 @@ generateElements('<div>Hello World!</div>');
     Top.addEventListener('click', function (e) {
       e.preventDefault();
       window.scrollTo({ top:0, behavior: 'smooth' });
-    })
+    }) 
+    gsap.to(".line2", { duration: 3, width: 700, delay: 0.2,});
+    gsap.to(".hand", { duration: 3, x:740, y:110, delay: 0,});
+    gsap.to(".hand", { duration: 3, y:-100, delay: 0,});
+    gsap.to(".hand", { duration: 3, y:30, delay: 0});
+    gsap.to(".hand", { duration: 3, y:15, delay: 0.9,});
+
 
     /* nav links */
     let links = gsap.utils.toArray(".link_nav a");
@@ -412,8 +437,9 @@ generateElements('<div>Hello World!</div>');
 <style>
 @import "../assets/css/sample.css";
 #one .panel:nth-child(1) {
-  background: url(../assets/images/bg/system1/01.jpg) no-repeat;
+  background: url(../assets/images/bg/system1/16.jpg) no-repeat;
   background-size: cover;
+  position: relative;
 }
 #two .panel:nth-child(1) {
   background: url(../assets/images/bg/system1/05.jpg) no-repeat;
@@ -473,7 +499,6 @@ generateElements('<div>Hello World!</div>');
   z-index: 999;
   height: 2em;
   width: 2em;
-  overflow: visible;
   margin: auto;
   top: 0;
   left: 0;
@@ -576,6 +601,33 @@ generateElements('<div>Hello World!</div>');
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.box{
+  position: absolute;
+  left: 0;
+  z-index: 10; 
+  margin: 20px; width: 100px; height: 100px;
+}
+.box1{ 
+  background: orange;
+}
+.line {
+  position: absolute;
+  left: 20px;
+  top: 563px;
+  width: 0px;
+  height: 40px;
+  background: url(../assets/images/bg/system1/15.jpg) no-repeat;
+  z-index: 30;
+}
+.hand {
+  position: absolute;
+  left: -40px;
+  top: 523px;
+  width: 423px;
+  height: 396px;
+  z-index: 50;
+  background: url(../assets/images/bg/system1/hand.png) no-repeat;
 }
 
 </style>
